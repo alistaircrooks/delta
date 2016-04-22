@@ -7,6 +7,7 @@ is similar in function to xdelta and vcdiff (RFC 3284), but more
 	-rw-r--r--  1 agc  users    206 Apr 19 16:50 1.bsd
 	-rw-r--r--  1 agc  users    113 Apr 19 16:50 1.delta
 	-rw-r--r--  1 agc  users    222 Apr 19 16:48 1.xd
+	-rw-r--r--  1 agc  users    158 Apr 21 17:48 1.xd3
 	-rw-r--r--  1 agc  users  10113 Apr 14 10:41 2
 
 The delta(1) utility takes 3 arguments - oldfile, newfile and
@@ -19,7 +20,8 @@ to patch, respectively. The default is to patch.
 	% diff 1 1.new
 	%
 
-The patchfile uses bzip2, and is more efficient than both xdelta (v1)
-by Josh MacDonald, and bsdiff from Colin Percival, dated 2005.  I've
-not tried xdelta3 yet.  It also uses zigzag encoding for the numbers
-stored internally, in order to be space-efficient.
+The patchfile uses bzip2, and is more efficient than both xdelta (v1
+and v3) by Josh MacDonald, and bsdiff from Colin Percival, dated
+2005, at least in the amount of space used for the generated patch
+file.  It also uses zigzag encoding for the numbers stored internally,
+in order to be space-efficient.
