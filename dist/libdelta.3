@@ -1,0 +1,120 @@
+.\" $NetBSD: genraidconf.8,v 1.3 2011/05/17 11:23:41 wiz Exp $
+.\"
+.\" Copyright (c) 2016 Alistair Crooks <agc@NetBSD.org>
+.\" All rights reserved.
+.\"
+.\" Redistribution and use in source and binary forms, with or without
+.\" modification, are permitted provided that the following conditions
+.\" are met:
+.\" 1. Redistributions of source code must retain the above copyright
+.\"    notice, this list of conditions and the following disclaimer.
+.\" 2. Redistributions in binary form must reproduce the above copyright
+.\"    notice, this list of conditions and the following disclaimer in the
+.\"    documentation and/or other materials provided with the distribution.
+.\"
+.\" THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
+.\" IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+.\" OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+.\" IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,
+.\" INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+.\" NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+.\" DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+.\" THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+.\" (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+.\" THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+.\"
+.Dd April 14, 2016
+.Dt LIBDELTA 3
+.Os
+.Sh NAME
+.Nm libdelta
+.Nd library providing binary diff and patch functionality
+.Sh LIBRARY
+.Lb libdelta
+.Sh SYNOPSIS
+.In delta.h
+.Ft "delta_t *" 
+.Fo delta_new
+.Fa "void"
+.Fc
+.Ft int
+.Fo delta_free
+.Fa "delta_t *delta"
+.Fc
+.Ft int
+.Fo delta_diff_mem
+.Fa "delta_t *delta" "const void *old" "size_t oldc"
+.Fa "const void *new" "size_t newc"
+.Fc
+.Ft int
+.Fo delta_patch_mem
+.Fa "delta_t *delta" "const void *old" "size_t oldc"
+.Fa "void *new" "size_t *newc"
+.Fc
+.Ft int
+.Fo delta_diff_file
+.Fa "const char *oldfile" "const char *newfile" "const char *patchfile"
+.Fc
+.Ft int
+.Fo delta_patch_file
+.Fa "const char *oldfile" "const char *newfile" "const char *patchfile"
+.Fc
+.Ft int
+.Fo delta_read_patch_file
+.Fa "delta_t *delta" "const char *patchfile"
+.Fc
+.Ft int
+.Fo delta_write_patch_file
+.Fa "delta_t *delta" "const char *patchfile"
+.Fc
+.Sh DESCRIPTION
+The
+.Nm
+library is a library interface which provides
+a space-efficient binary diff and patch functionality
+for use by programs and scripts.
+The typical space usage is about half of xdelta version 1.
+.Pp
+A
+.Dv delta_t
+structure is opaque, and is initialised
+using the
+.Fn delta_new
+function, and all resources freed
+with the
+.Fn delta_free
+function.
+.Pp
+Memory can be
+.Dq diffed
+to produce a patch using the
+.Fn delta_diff_mem
+function,
+and the resulting diff can be re-applied to the original file
+to produce the
+.Dq new
+file using the
+.Fn delta_patch_mem
+function.
+.Pp
+There is a similar set of operations at a file level, using the
+.Fn delta_diff_file
+and 
+.Fn delta_patch_file
+functions.
+.Pp
+The two functions
+.Fn delta_read_patch_file
+and
+.Fn delta_write_patch_file
+can be used to read and write patch files from memory operations
+which have completed successfully.
+.Sh HISTORY
+The
+.Nm
+library first appeared in
+.Nx 8.0 .
+.Sh AUTHORS
+.An Alistair Crooks Aq Mt agc@NetBSD.org
+based on some original code from
+.An Colin Percival
