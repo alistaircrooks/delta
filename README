@@ -5,7 +5,7 @@ is similar in function to xdelta and vcdiff (RFC 3284), but more
 
 	-rw-r--r--  1 agc  users  10107 Apr 14 10:41 1
 	-rw-r--r--  1 agc  users    206 Apr 19 16:50 1.bsd
-	-rw-r--r--  1 agc  users    113 Apr 19 16:50 1.delta
+	-rw-r--r--  1 agc  users    109 Apr 21 17:52 1.delta
 	-rw-r--r--  1 agc  users    222 Apr 19 16:48 1.xd
 	-rw-r--r--  1 agc  users    158 Apr 21 17:48 1.xd3
 	-rw-r--r--  1 agc  users  10113 Apr 14 10:41 2
