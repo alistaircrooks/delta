@@ -1,4 +1,4 @@
-delta is a library (and two associated utilities) which allow
+delta is a library (and an associated utility) which allow
 us to perform binary diff and patching in an efficient way. It
 is similar in function to xdelta and vcdiff (RFC 3284), but more
 (space-)efficient.
@@ -19,7 +19,7 @@ to patch, respectively. The default is to patch.
 	% diff 1 1.new
 	%
 
-The patchfile uses bzip2, and is more efficient than both xdelta by
-Josh MacDonald, and bsdiff from Colin Percival, dated 2005.  It also
-uses zigzag encoding for the numbers stored internally, in order to be
-space-efficient.
+The patchfile uses bzip2, and is more efficient than both xdelta (v1)
+by Josh MacDonald, and bsdiff from Colin Percival, dated 2005.  I've
+not tried xdelta3 yet.  It also uses zigzag encoding for the numbers
+stored internally, in order to be space-efficient.
